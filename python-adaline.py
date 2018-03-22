@@ -5,7 +5,6 @@ Date: 09/03/2017
 """
 
 import numpy as np
-import pylab
 import matplotlib.pyplot as plt
 import math
 
@@ -90,11 +89,13 @@ for input_item,desired in zip(INPUTS, OUTPUTS):
 
 
 # Plot the errors to see how we did during training
-plt.plot(errors, c='#aaaaff', label='Training Errors')
+ax = plt.subplot(111)
+ax.plot(errors, c='#aaaaff', label='Training Errors')
+ax.set_xscale("log")
 plt.title("ADALINE Errors (2,-2)")
 plt.legend()
-pylab.xlabel('Error')
-pylab.ylabel('Value')
+plt.xlabel('Error')
+plt.ylabel('Value')
 plt.show()
 
 
