@@ -61,20 +61,22 @@ for iter in xrange(100):
         ADALINE_OUTPUT = (input_item[0]*WEIGHTS[0]) + (input_item[1]*WEIGHTS[1]) + (input_item[2]*WEIGHTS[2])
 
         # Run ADALINE_OUTPUT through the step function
-        ADALINE_OUTPUT = step(ADALINE_OUTPUT)
+        #DALINE_OUTPUT = step(ADALINE_OUTPUT)
 
         # Calculate the ERROR generated
-        ERROR = desired - ADALINE_OUTPUT
+        # Squared error should be use as described in fausset book.
+        ERROR = .5*(desired - ADALINE_OUTPUT) ** 2
+        
         
         # Store the ERROR
         errors.append(ERROR)
         
         # Update the weights based on the delta rule
-        WEIGHTS[0] = WEIGHTS[0] + LEARNING_RATE * ERROR * input_item[0]
-        WEIGHTS[1] = WEIGHTS[1] + LEARNING_RATE * ERROR * input_item[1]
-        WEIGHTS[2] = WEIGHTS[2] + LEARNING_RATE * ERROR * input_item[2]
-    
-    
+        
+        
+        WEIGHTS[0] +=  LEARNING_RATE * (desired - ADALINE_OUTPUT) * input_item[0]
+        WEIGHTS[1 +=  LEARNING_RATE * (desired - ADALINE_OUTPUT) * input_item[1]
+        WEIGHTS[2] +=  LEARNING_RATE * (desired - ADALINE_OUTPUT) * input_item[2]
 
 
 print "New Weights after training", WEIGHTS
